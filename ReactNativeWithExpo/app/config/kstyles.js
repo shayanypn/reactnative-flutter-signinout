@@ -1,11 +1,14 @@
 import { Platform } from "react-native";
-import colors from "./kcolors";
+import kcolors from "./kcolors";
 
 export default {
-  colors,
+  kcolors,
   text: {
-    color: colors.dark,
+    color: kcolors.dark,
     fontSize: 16,
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
+  },
+  bgPrimary: {
+    backgroundColor: kcolors.primary,
   },
 };

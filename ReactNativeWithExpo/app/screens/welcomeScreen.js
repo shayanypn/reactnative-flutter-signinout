@@ -1,21 +1,15 @@
 import React from "react";
-import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-} from "react-native";
-import Constants from "expo-constants";
+import { StyleSheet, View, Text, Image } from "react-native";
 
 import kcolors from "../config/kcolors";
 import kstyles from "../config/kstyles";
+import AppButton from "../components/Button";
+import Screen from "../components/Screen";
 
 function WelcomeScreen(props) {
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.head}>
+    <Screen style={kstyles.bgPrimary}>
+      <Screen.Header>
         <Text style={[kstyles.text, styles.headTitle]}>
           Welcome to BTC Exchange
         </Text>
@@ -23,51 +17,27 @@ function WelcomeScreen(props) {
           We are offering digital asset exchange with maximum security and
           advanced trading features.
         </Text>
-      </View>
-      <View style={styles.content}>
+      </Screen.Header>
+      <Screen.Body>
         <Image style={styles.logo} source={require("../assets/logo.png")} />
-      </View>
-      <View style={styles.foot}>
-        <TouchableOpacity style={styles.btnWhite}>
-          <Text style={[kstyles.text, styles.btnWhiteText]}>SIGN UP</Text>
-        </TouchableOpacity>
+      </Screen.Body>
+      <Screen.Footer>
+        <AppButton
+          title="SIGN UP"
+          type="primaryWhite"
+          style={styles.btnSignup}
+        />
         <Text style={styles.textHasAccount}>Already a member?</Text>
-        <TouchableOpacity style={styles.btnTransparent}>
-          <Text style={[kstyles.text, styles.btnTransparentText]}>Sign In</Text>
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
+        <AppButton title="Sign In" type="transparentWhite" />
+      </Screen.Footer>
+    </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    display: "flex",
-    backgroundColor: kcolors.primary,
-    height: "100%",
-    paddingTop: Constants.statusBarHeight,
-    flex: 1,
-  },
-  head: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 20,
-  },
-  content: {
-    flex: 3,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  foot: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 20,
-  },
   logo: {
-    width: 200,
-    height: 200,
+    width: "60%",
+    height: "60%",
   },
   headTitle: {
     color: kcolors.white,
@@ -81,33 +51,8 @@ const styles = StyleSheet.create({
   textHasAccount: {
     color: kcolors.light,
   },
-  btnWhite: {
-    backgroundColor: kcolors.secondary,
-    borderRadius: 25,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 15,
-    width: "100%",
-    marginVertical: 10,
-  },
-  btnWhiteText: {
-    color: kcolors.primary,
-    fontSize: 16,
-    textTransform: "uppercase",
-    fontWeight: "bold",
-  },
-  btnTransparent: {
-    backgroundColor: "transparent",
-    borderRadius: 25,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 15,
-    width: "100%",
-    marginVertical: 10,
-  },
-  btnTransparentText: {
-    color: kcolors.white,
-    fontSize: 16,
+  btnSignup: {
+    marginBottom: 15,
   },
 });
 
