@@ -1,6 +1,7 @@
 import React from "react";
 import Constants from "expo-constants";
-import { StyleSheet, SafeAreaView, View } from "react-native";
+import { StyleSheet, SafeAreaView, View, ImageBackground } from "react-native";
+import kcolors from "../config/kcolors";
 
 function Screen({ children, style }) {
   const header = React.Children.map(children, (child) =>
@@ -12,9 +13,17 @@ function Screen({ children, style }) {
   const footer = React.Children.map(children, (child) =>
     child.type.displayName === "Footer" ? child : null
   );
+
   return (
     <SafeAreaView style={[styles.screen, style]}>
-      <View style={styles.head}>{header}</View>
+      {header && header.length ? (
+        <View style={styles.head}>header</View>
+      ) : (
+        <ImageBackground
+          source={require("../assets/logo-header.png")}
+          style={styles.headWithLogo}
+        />
+      )}
       <View style={styles.body}>{body}</View>
       <View style={styles.foot}>{footer}</View>
     </SafeAreaView>
@@ -39,20 +48,28 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   head: {
-    flex: 1,
+    flex: 3,
     justifyContent: "center",
     alignItems: "center",
-    padding: 20,
+  },
+  headWithLogo: {
+    flex: 3,
+    alignItems: "center",
+    resizeMode: "contain",
+  },
+  logo: {
+    width: 120,
+    height: 120,
   },
   body: {
-    flex: 3,
+    flex: 8,
     alignItems: "center",
     justifyContent: "center",
   },
   foot: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     padding: 20,
   },
 });

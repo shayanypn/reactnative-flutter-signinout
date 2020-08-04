@@ -19,14 +19,19 @@ function WelcomeScreen(props) {
         </Text>
       </Screen.Header>
       <Screen.Body>
-        <Image style={styles.logo} source={require("../assets/logo.png")} />
+        <View style={styles.middle}>
+          <Image
+            style={styles.logo}
+            source={require("../assets/logo-center.png")}
+          />
+          <AppButton
+            title="SIGN UP"
+            type="primaryWhite"
+            style={styles.btnSignup}
+          />
+        </View>
       </Screen.Body>
       <Screen.Footer>
-        <AppButton
-          title="SIGN UP"
-          type="primaryWhite"
-          style={styles.btnSignup}
-        />
         <Text style={styles.textHasAccount}>Already a member?</Text>
         <AppButton title="Sign In" type="transparentWhite" />
       </Screen.Footer>
@@ -36,8 +41,9 @@ function WelcomeScreen(props) {
 
 const styles = StyleSheet.create({
   logo: {
-    width: "60%",
-    height: "60%",
+    width: "100%",
+    height: "80%",
+    marginTop: 40,
   },
   headTitle: {
     color: kcolors.white,
@@ -47,6 +53,14 @@ const styles = StyleSheet.create({
   headSubtitle: {
     color: kcolors.secondary,
     textAlign: "center",
+  },
+  middle: {
+    flex: 1,
+    paddingLeft: 20,
+    paddingRight: 20,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   textHasAccount: {
     color: kcolors.light,
