@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
   transparentBlueText: {
     color: kcolors.primary,
     fontSize: 16,
+    fontWeight: "bold",
   },
 });
 
