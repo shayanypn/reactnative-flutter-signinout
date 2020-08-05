@@ -6,7 +6,7 @@ import AppButton from "../components/Button";
 import Screen from "../components/Screen";
 import { Form, FormField, SubmitButton } from "../components/Form";
 
-function SigninScreen(props) {
+function SignupScreen(props) {
   return (
     <Screen>
       <Screen.Body>
@@ -16,14 +16,22 @@ function SigninScreen(props) {
         >
           <View style={styles.formContent}>
             <View style={styles.formContentInput}>
-              <Text style={styles.formContentTitle}>Sing In Now</Text>
+              <Text style={styles.formContentTitle}>Create Account</Text>
               <FormField
                 autoCapitalize="none"
                 autoCorrect={false}
                 icon="account"
+                name="name"
+                placeholder="name"
+                textContentType="text"
+              />
+              <FormField
+                autoCapitalize="none"
+                autoCorrect={false}
+                icon="email"
                 keyboardType="email-address"
                 name="email"
-                placeholder="Email address or username"
+                placeholder="Email address"
                 textContentType="emailAddress"
               />
               <FormField
@@ -35,18 +43,29 @@ function SigninScreen(props) {
                 secureTextEntry
                 textContentType="password"
               />
+              <FormField
+                autoCapitalize="none"
+                autoCorrect={false}
+                icon="lock-outline"
+                name="repeat-password"
+                placeholder="Repeat Password"
+                secureTextEntry
+                textContentType="password"
+              />
               <View style={styles.formContentFoot}>
-                <Text style={styles.formContentFootText}>Remember me</Text>
-                <Text style={styles.formContentFootText}>Forget Password?</Text>
+                <Text style={styles.formContentFootText}>Agree to the </Text>
+                <Text style={styles.formContentFootTextBlue}>
+                  Terms and Conditions
+                </Text>
               </View>
             </View>
-            <SubmitButton title="Login" type="primary" />
+            <SubmitButton title="Sign up" type="primary" />
           </View>
         </Form>
       </Screen.Body>
       <Screen.Footer>
-        <Text style={styles.textHasAccount}>Don't you have an account?</Text>
-        <AppButton title="Sign Up from here" type="transparentBlue" />
+        <Text style={styles.textHasAccount}>Already have an account?</Text>
+        <AppButton title="Sign In from here" type="transparentBlue" />
       </Screen.Footer>
     </Screen>
   );
@@ -56,7 +75,7 @@ const styles = StyleSheet.create({
   formContent: {
     paddingLeft: 20,
     paddingRight: 20,
-    paddingTop: 60,
+    paddingTop: 20,
     width: "100%",
     flex: 1,
   },
@@ -73,12 +92,16 @@ const styles = StyleSheet.create({
   formContentFoot: {
     flex: 1,
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     paddingLeft: 5,
     paddingRight: 5,
   },
   formContentFootText: {
     color: kcolors.gray,
+  },
+  formContentFootTextBlue: {
+    color: kcolors.primary,
+    fontWeight: "bold",
   },
   textHasAccount: {
     color: kcolors.gray,
@@ -88,4 +111,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SigninScreen;
+export default SignupScreen;
