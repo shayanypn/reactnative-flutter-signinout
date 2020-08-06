@@ -5,10 +5,14 @@ import kcolors from "../config/kcolors";
 import AppButton from "../components/Button";
 import Screen from "../components/Screen";
 import { Form, FormField, SubmitButton } from "../components/Form";
+import kstyles from "../config/kstyles";
 
-function SigninScreen(props) {
+function SigninScreen({ navigation }) {
   return (
-    <Screen>
+    <Screen
+      colorStyle={kstyles.bgWhite}
+      onBack={() => navigation.navigate("Home")}
+    >
       <Screen.Body>
         <Form
           initialValues={{ email: "", password: "" }}
@@ -46,7 +50,11 @@ function SigninScreen(props) {
       </Screen.Body>
       <Screen.Footer>
         <Text style={styles.textHasAccount}>Don't you have an account?</Text>
-        <AppButton title="Sign Up from here" type="transparentBlue" />
+        <AppButton
+          title="Sign Up from here"
+          type="transparentBlue"
+          onBack={() => navigation.navigate("Signup")}
+        />
       </Screen.Footer>
     </Screen>
   );

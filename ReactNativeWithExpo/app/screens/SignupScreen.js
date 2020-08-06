@@ -2,13 +2,17 @@ import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 
 import kcolors from "../config/kcolors";
+import kstyles from "../config/kstyles";
 import AppButton from "../components/Button";
 import Screen from "../components/Screen";
 import { Form, FormField, SubmitButton } from "../components/Form";
 
-function SignupScreen(props) {
+function SignupScreen({ navigation }) {
   return (
-    <Screen>
+    <Screen
+      colorStyle={kstyles.bgWhite}
+      onBack={() => navigation.navigate("Home")}
+    >
       <Screen.Body>
         <Form
           initialValues={{ email: "", password: "" }}
@@ -23,7 +27,6 @@ function SignupScreen(props) {
                 icon="account"
                 name="name"
                 placeholder="name"
-                textContentType="text"
               />
               <FormField
                 autoCapitalize="none"
@@ -65,7 +68,11 @@ function SignupScreen(props) {
       </Screen.Body>
       <Screen.Footer>
         <Text style={styles.textHasAccount}>Already have an account?</Text>
-        <AppButton title="Sign In from here" type="transparentBlue" />
+        <AppButton
+          title="Sign In from here"
+          type="transparentBlue"
+          onBack={() => navigation.navigate("Signin")}
+        />
       </Screen.Footer>
     </Screen>
   );

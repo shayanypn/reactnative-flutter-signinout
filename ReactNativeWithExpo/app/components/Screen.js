@@ -2,8 +2,9 @@ import React from "react";
 import Constants from "expo-constants";
 import { StyleSheet, SafeAreaView, View, ImageBackground } from "react-native";
 import kcolors from "../config/kcolors";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-function Screen({ children, style }) {
+function Screen({ children, style, onBack, colorStyle }) {
   const header = React.Children.map(children, (child) =>
     child.type.displayName === "Header" ? child : null
   );
@@ -17,15 +18,23 @@ function Screen({ children, style }) {
   return (
     <SafeAreaView style={[styles.screen, style]}>
       {header && header.length ? (
-        <View style={styles.head}>header</View>
+        <View style={styles.head}>{header}</View>
       ) : (
         <ImageBackground
           source={require("../assets/logo-header.png")}
           style={styles.headWithLogo}
-        />
+        >
+          <MaterialCommunityIcons
+            name="chevron-left"
+            size={32}
+            color={kcolors.white}
+            style={styles.headWithLogoBack}
+            onPress={() => (onBack ? onBack() : () => null)}
+          />
+        </ImageBackground>
       )}
-      <View style={styles.body}>{body}</View>
-      <View style={styles.foot}>{footer}</View>
+      <View style={[styles.body, colorStyle]}>{body}</View>
+      <View style={[styles.foot, colorStyle]}>{footer}</View>
     </SafeAreaView>
   );
 }
@@ -46,6 +55,7 @@ const styles = StyleSheet.create({
   screen: {
     paddingTop: Constants.statusBarHeight,
     flex: 1,
+    backgroundColor: kcolors.primary,
   },
   head: {
     flex: 3,
@@ -54,8 +64,13 @@ const styles = StyleSheet.create({
   },
   headWithLogo: {
     flex: 3,
-    alignItems: "center",
+    alignItems: "flex-start",
     resizeMode: "contain",
+    paddingLeft: 5,
+    backgroundColor: kcolors.white,
+  },
+  headWithLogoBack: {
+    marginTop: 20,
   },
   logo: {
     width: 120,

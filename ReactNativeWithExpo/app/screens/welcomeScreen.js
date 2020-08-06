@@ -6,7 +6,7 @@ import kstyles from "../config/kstyles";
 import AppButton from "../components/Button";
 import Screen from "../components/Screen";
 
-function WelcomeScreen(props) {
+function WelcomeScreen({ navigation }) {
   return (
     <Screen style={kstyles.bgPrimary}>
       <Screen.Header>
@@ -28,12 +28,17 @@ function WelcomeScreen(props) {
             title="SIGN UP"
             type="primaryWhite"
             style={styles.btnSignup}
+            onPress={() => navigation.navigate("Signup")}
           />
         </View>
       </Screen.Body>
       <Screen.Footer>
         <Text style={styles.textHasAccount}>Already a member?</Text>
-        <AppButton title="Sign In" type="transparentWhite" />
+        <AppButton
+          title="Sign In"
+          type="transparentWhite"
+          onPress={() => navigation.navigate("Signin")}
+        />
       </Screen.Footer>
     </Screen>
   );

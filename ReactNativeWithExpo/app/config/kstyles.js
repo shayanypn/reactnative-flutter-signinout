@@ -11,4 +11,7 @@ export default {
   bgPrimary: {
     backgroundColor: kcolors.primary,
   },
+  bgWhite: {
+    backgroundColor: kcolors.white,
+  },
 };
